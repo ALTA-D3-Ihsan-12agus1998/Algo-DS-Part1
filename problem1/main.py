@@ -1,5 +1,8 @@
-def remove_duplicates(array):
-    return 0
+def remove_duplicates(array) :
+    unique_elements = {}
+    for numb in array :
+        unique_elements[numb] = True
+    return len(unique_elements)
 
 if __name__ == "__main__":
     print(remove_duplicates([2, 3, 3, 3, 6, 9, 9]))  # 4
