@@ -1,35 +1,28 @@
-def is_prime(numb) :
-    if numb <= 1 :
+def is_prime(num) :
+    if num < 2 :
         return False
-    if numb <= 3 :
-        return True
-    if numb % 2 == 0 or numb % 3 == 0 :
-        return False
-    i = 5
-    while i * i <= numb :
-        if numb % i == 0 or numb % (i + 2) == 0 :
+    for i in range(2, int(num**0.5) + 1) :
+        if num % i == 0 :
             return False
-        i += 6
     return True
-
-def nextprimrime(start) :
-    nextprim = start + 1
-    while not is_prime(nextprim) :
-        nextprim += 1
-    return nextprim
 
 def generate_primes_grid(width, height, start) :
     primes = []
-    current = start
+    num = start
     while len(primes) < width * height :
-        current = nextprimrime(current)
-        primes.append(current)
-    
-    result = ""
+        if is_prime(num) :
+            primes.append(num)
+        num += 1
+
+    result = "\n"
+
     for row in range(height) :
-        row_primes = " ".join(f"{primes[row * width + column]:2}".strip() for column in range(width))
-        result += row_primes + "\n"
-    
+        for col in range(width) :
+            result += str(primes[row * width + col])
+            if col < width - 1 :
+                result += " "
+        result += "\n"
+
     return result
 
 if __name__ == "__main__":
@@ -39,8 +32,10 @@ if __name__ == "__main__":
     23 29
     31 37
     """
+
     print(generate_primes_grid(5, 2, 1))
     """
     2  3  5  7 11
     13 17 19 23 29
     """
+
