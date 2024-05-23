@@ -15,7 +15,6 @@ def generate_primes_grid(width, height, start) :
         num += 1
 
     result = "\n"
-
     for row in range(height) :
         for col in range(width) :
             result += str(primes[row * width + col])
@@ -24,6 +23,7 @@ def generate_primes_grid(width, height, start) :
         result += "\n"
 
     return result
+
 
 if __name__ == "__main__":
     print(generate_primes_grid(2, 3, 13))
